@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "modbus-opcua-bridge"
+version = "0.1.0"
+description = "Bridge service for publishing Modbus data into an OPC UA server."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "asyncua>=1.1.8,<2.0",
+  "pymodbus>=3.12.1,<4.0",
+  "pyserial>=3.5,<4.0",
+]
+
+[project.scripts]
+modbus-opcua-bridge = "modbus_opcua_bridge.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+

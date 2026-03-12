@@ -1,0 +1,57 @@
+{
+  "modbus": {
+    "transport": "tcp",
+    "host": "127.0.0.1",
+    "port": 502,
+    "device_id": 1,
+    "timeout": 3.0,
+    "retries": 3
+  },
+  "opcua": {
+    "endpoint": "opc.tcp://0.0.0.0:4840/modbus-opcua/",
+    "namespace": "urn:example:modbus-opcua-bridge",
+    "server_name": "Modbus OPC UA Bridge",
+    "root_name": "ModbusBridge"
+  },
+  "polling": {
+    "interval_ms": 1000,
+    "max_register_batch": 120,
+    "max_bit_batch": 2000,
+    "max_group_gap": 1
+  },
+  "points": [
+    {
+      "name": "Temperature",
+      "folder": "Line1/Sensors",
+      "source": "holding_register",
+      "address": 0,
+      "data_type": "float32",
+      "word_order": "little",
+      "byte_order": "big"
+    },
+    {
+      "name": "Pressure",
+      "folder": "Line1/Sensors",
+      "source": "input_register",
+      "address": 10,
+      "data_type": "uint16",
+      "scale": 0.1
+    },
+    {
+      "name": "PumpRunning",
+      "folder": "Line1/States",
+      "source": "coil",
+      "address": 0,
+      "data_type": "bool"
+    },
+    {
+      "name": "AlarmActive",
+      "folder": "Line1/States",
+      "source": "holding_register",
+      "address": 20,
+      "data_type": "bool",
+      "bit_index": 3
+    }
+  ]
+}
+

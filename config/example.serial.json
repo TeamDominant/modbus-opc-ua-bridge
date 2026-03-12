@@ -1,0 +1,43 @@
+{
+  "modbus": {
+    "transport": "serial",
+    "serial_port": "COM3",
+    "framer": "rtu",
+    "baudrate": 19200,
+    "bytesize": 8,
+    "parity": "N",
+    "stopbits": 1,
+    "device_id": 1,
+    "timeout": 3.0,
+    "retries": 3
+  },
+  "opcua": {
+    "endpoint": "opc.tcp://0.0.0.0:4840/modbus-opcua/",
+    "namespace": "urn:example:modbus-opcua-bridge",
+    "server_name": "Modbus OPC UA Bridge",
+    "root_name": "ModbusBridge"
+  },
+  "polling": {
+    "interval_ms": 1000,
+    "max_register_batch": 120,
+    "max_bit_batch": 2000,
+    "max_group_gap": 0
+  },
+  "points": [
+    {
+      "name": "MotorCurrent",
+      "folder": "RTU/Drives",
+      "source": "input_register",
+      "address": 100,
+      "data_type": "float32",
+      "word_order": "little"
+    },
+    {
+      "name": "MotorEnabled",
+      "folder": "RTU/Drives",
+      "source": "discrete_input",
+      "address": 0,
+      "data_type": "bool"
+    }
+  ]
+}
